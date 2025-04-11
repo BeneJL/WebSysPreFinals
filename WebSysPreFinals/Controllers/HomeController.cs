@@ -15,7 +15,12 @@ namespace WebSysPreFinals.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            StudentPageModel resp = new StudentPageModel();
+            using (var db = new StudInfoSysContext())
+            {
+                resp.students = db.Students.ToList();
+            }
+            return View(resp);
         }
         public IActionResult Student()
         {
